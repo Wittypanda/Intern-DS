@@ -1,0 +1,70 @@
+import pandas as pd
+# import sklearn as sk
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn import svm
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.naive_bayes import MultinomialNB
+
+nb = MultinomialNB()
+rf = RandomForestClassifier(random_state=1)
+svm = svm.SVC()
+gb = GradientBoostingClassifier(n_estimators=10)
+dt = DecisionTreeClassifier(random_state=0)
+mlp = MLPClassifier(solver='lbfgs',alpha=1e-5,hidden_layer_sizes=(5,2),random_state=0)
+logr = LogisticRegression(random_state=0)
+
+df = pd.read_csv("C:/Users/CC-105/Desktop/irisds.csv")
+# print(df)
+
+x = df.drop("species", axis=1)
+# print(x)
+
+y = df["species"]
+# print(y)
+
+x_train,x_test,y_train,y_test = train_test_split(x,y,random_state=0,test_size=0.3)
+
+logr.fit(x_train,y_train)
+nb.fit(x_train,y_train)
+rf.fit(x_train,y_train)
+svm.fit(x_train,y_train)
+gb.fit(x_train,y_train)
+dt.fit(x_train,y_train)
+mlp.fit(x_train,y_train)
+
+
+
+pred = logr.predict(x_test)
+pred1 = nb.predict(x_test)
+pred2 = rf.predict(x_test)
+pred3 = svm.predict(x_test)
+pred4 = gb.predict(x_test)
+pred5 = dt.predict(x_test)
+pred6 = mlp.predict(x_test)
+
+print('Logistic :')
+print(accuracy_score(y_test,pred))
+
+print('Naive Bayes :')
+print(accuracy_score(y_test,pred1))
+
+print('Random Forest:')
+print(accuracy_score(y_test,pred2))
+
+print('Support Vector Machine:')
+print(accuracy_score(y_test,pred3))
+
+print('Gradient Boost:')
+print(accuracy_score(y_test,pred4))
+
+print('Decission Tree:')
+print(accuracy_score(y_test,pred5))
+
+print('MLP:')
+print(accuracy_score(y_test,pred6))
+
