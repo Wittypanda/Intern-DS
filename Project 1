@@ -68,3 +68,22 @@ print(accuracy_score(y_test,pred5))
 print('MLP:')
 print(accuracy_score(y_test,pred6))
 
+#Output
+'''
+Logistic :
+0.9777777777777777
+Naive Bayes :
+0.6
+Random Forest:
+0.9777777777777777
+Support Vector Machine:
+0.9777777777777777
+Gradient Boost:
+0.9777777777777777
+Decission Tree:
+0.9777777777777777
+MLP:
+0.24444444444444444
+
+'''
+
